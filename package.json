@@ -1,0 +1,42 @@
+{
+  "name": "torres-project",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "serve -s dist -l 5173"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/free-regular-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@vueup/vue-quill": "^1.2.0",
+    "animate.css": "^4.1.1",
+    "autoprefixer": "^10.4.19",
+    "axios": "^1.7.2",
+    "color": "^4.2.3",
+    "echarts": "^5.5.0",
+    "element-plus": "^2.7.3",
+    "lodash-es": "^4.17.21",
+    "pinia": "^2.1.7",
+    "pinia-persistedstate-plugin": "^0.1.0",
+    "postcss": "^8.4.38",
+    "postcss-loader": "^8.1.1",
+    "tailwindcss": "^3.4.3",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "@vue/cli-service": "^5.0.8",
+    "sass": "^1.77.2",
+    "serve": "^14.2.3",
+    "vite": "^5.2.8",
+    "vue3-google-login": "^2.0.26"
+  }
+}
