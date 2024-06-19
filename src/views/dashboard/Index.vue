@@ -177,10 +177,10 @@ onMounted(() => {
       <el-row justify="space-between">
         <el-col :span="18" :xs="24">
           <div class="flex h-full items-center">
-            <img
+            <!-- <img
               class="w-20 h-20 mr-5 rounded-full"
-              :src="'https://media1.tenor.com/m/GOabrbLMl4AAAAAd/plink-cat-plink.gif'"
-            />
+              :src="'@/assets/treefrog.jpg'"
+            /> -->
             <!-- <img
               class="w-20 h-20 mr-5 rounded-full"
               :src="userStore.user.avatar + '?imageView2/1/w/80/h/80'"

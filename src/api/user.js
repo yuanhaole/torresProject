@@ -7,7 +7,7 @@ export const userRegisterService = (registerData)=>{
     for(let key in registerData){
         params.append(key,registerData[key]);
     }
-    return request.post('/start/account/register',params);
+    return request.post('/account/register',params);
 }
 
 //login
@@ -16,15 +16,15 @@ export const userLoginService = (loginData)=>{
     for(let key in loginData){
         params.append(key,loginData[key]);
     }
-    return request.post('/start/account/login',params);
+    return request.post('/account/login',params);
 }
 
 //get userInfo
 export const userInfoService = ()=>{
-    return request.get('/start/account/accountInfo')
+    return request.get('/account/accountInfo')
 }
 
 //update userInfo
 export const userInfoUpdateService = (userInfoData)=>{
-    return request.put('/start/account/update',userInfoData)
+    return request.put('/account/update',userInfoData)
 }

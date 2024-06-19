@@ -10,7 +10,7 @@ import {
     SwitchButton,
     CaretBottom
 } from '@element-plus/icons-vue'
-import avatar from '@/assets/default.png'
+import avatar from '@/assets/treefrog.jpg'
 
 import { userInfoService } from '@/api/user.js';
 import useUserInfoStore from '@/stores/userInfo.js';
@@ -55,7 +55,7 @@ const headleCommand = (command)=>{
       
       ElMessage({
         type: 'success',
-        message: '刪除成功',
+        message: '登出成功',
       })
     })
     .catch(() => {
@@ -97,6 +97,12 @@ const headleCommand = (command)=>{
                     </el-icon>
                     <span>文章管理</span>
                 </el-menu-item>
+                <el-menu-item index="/chatroom/index">
+                    <el-icon>
+                        <Promotion />
+                    </el-icon>
+                    <span>聊天室</span>
+                </el-menu-item>
                 <el-sub-menu >
                     <template #title>
                         <el-icon>
@@ -110,12 +116,12 @@ const headleCommand = (command)=>{
                         </el-icon>
                         <span>基本資料</span>
                     </el-menu-item>
-                    <el-menu-item  index="/user/avatar">
+                    <!-- <el-menu-item  index="/user/avatar">
                         <el-icon>
                             <Crop />
                         </el-icon>
                         <span>更改大頭貼</span>
-                    </el-menu-item>
+                    </el-menu-item> -->
                     <el-menu-item index="/user/resetPassword">
                         <el-icon>
                             <EditPen />
@@ -142,7 +148,7 @@ const headleCommand = (command)=>{
                     <template #dropdown>
                         <el-dropdown-menu>
                             <el-dropdown-item command="info" :icon="User">基本資料</el-dropdown-item>
-                            <el-dropdown-item command="avatar" :icon="Crop">更改大頭貼</el-dropdown-item>
+                            <!-- <el-dropdown-item command="avatar" :icon="Crop">更改大頭貼</el-dropdown-item> -->
                             <el-dropdown-item command="resetPassword" :icon="EditPen">重置密碼</el-dropdown-item>
                             <el-dropdown-item command="logout" :icon="SwitchButton">登出</el-dropdown-item>
                         </el-dropdown-menu>

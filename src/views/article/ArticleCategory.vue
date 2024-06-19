@@ -6,15 +6,18 @@ import {
 import { ref } from 'vue'
 const categories = ref([])
 //宣告非同步的函數
-import {articleCategoryListService, 
+import {
+    articleCategoryListService, 
     articleCategoryAddService, 
     articleCategoryUpdateService, 
     articleCategoryDeleteService
 } from '@/api/article.js'
+
 const articleCategoryList = async() => {
     let result = await articleCategoryListService();
     categories.value = result.data;
 }
+
 articleCategoryList();
 
 // 控制加入分類彈跳視窗
@@ -130,7 +133,7 @@ const deteleCategory = (row)=>{
                 </template>
             </el-table-column>
             <template #empty>
-                <el-empty description="沒有數據" />
+                <el-empty description="沒有資料" />
             </template>
         </el-table>
 

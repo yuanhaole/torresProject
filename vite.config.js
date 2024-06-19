@@ -18,7 +18,9 @@ export default defineConfig({
   server:{
     proxy:{
       '/api':{ //取得path中包含/api的Request
-        target:'http://localhost:4090',
+        target:'http://localhost:4090/start',
+        // target:'http://35.230.119.104:9999/torres',
+
         changeOrigin:true,
         rewrite:(path) => path.replace(/^\/api/,'') //將/api換成''
       }

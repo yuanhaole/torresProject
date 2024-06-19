@@ -49,12 +49,17 @@ const loginFormRef = ref(null)
 // call後端，註冊
 const register = () => {
     registerFormRef.value.validate(async (valid) => {
+        console.log("==========register")
         if (valid) {
             let result = await userRegisterService(registerData.value)
-            if (result.code === 0) {
+            console.log("result.code==========" + result.code)
+            if (result.code === 200) {
                 ElMessage.success(result.msg ? result.msg : '註冊成功')
-            } else {
-                ElMessage.error(result.msg ? result.msg : '註冊失敗')
+                isRegister.value = true;
+            } else if(result.code === 400){
+                ElMessage.error(result.msg ? result.msg : '帳號已經存在')
+            }else{
+                ElMessage.error(result.msg ? result.msg : '註冊失敗，請檢查網路')
             }
         } else {
             ElMessage.error('請確認是否有填入帳號或密碼')
@@ -68,13 +73,15 @@ const tokenStore = useTokenStore()
 
 const login = () => {
     loginFormRef.value.validate(async (valid) => {
-        console.log(valid)
+        console.log("valid===="+valid)
         if (valid) {
             let result = await userLoginService(registerData.value)
+            console.log("result.code====111="+result.code)
             if (result.code === 200) {
                 ElMessage.success(result.msg ? result.msg : '登入成功')
                 tokenStore.setToken(result.data)
-                router.push('/')
+                console.log("=====/dashboard/index")
+                router.push('/dashboard/index')
             } else {
                 ElMessage.error(result.msg ? result.msg : '帳號或密碼有誤')
             }
@@ -145,8 +152,8 @@ console.log("Handle the response", response)
                 <form @submit.prevent="login">
                     <h2>Sign in</h2>
                     <div class="social-container">
-                        <!-- <GoogleLogin :callback="callback" />
-                        <p v-if="googleLogin">
+                        <!-- <GoogleLogin :callback="callback" /> -->
+                        <!-- <p v-if="googleLogin">
                             <span>Name: {{ googleLogin.name }}</span><br>
                             <span>Email: {{ googleLogin.email }}</span>
                         </p> -->
@@ -207,7 +214,7 @@ input[type=radio]{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    font-family: Arial,sans-serif;
     height: 100vh;
     margin: -20px 0 50px;
 }

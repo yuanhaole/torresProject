@@ -13,10 +13,10 @@ const userInfo = ref({...userInfoStore.info})
 
 const rules = {
     name: [
-        { required: true, message: '請輸入使用者暱稱', trigger: 'blur' },
+        { required: true, message: '請輸入使用者姓名', trigger: 'blur' },
         {
             pattern: /^\S{2,10}$/,
-            message: '暱稱必須是2-10位的非空字符串',
+            message: '姓名必須在10個字之內',
             trigger: 'blur'
         }
     ],
@@ -29,13 +29,22 @@ const rules = {
 //修改userInfo
 import { userInfoUpdateService } from '@/api/user.js'
 import { ElMessage } from 'element-plus'
-const updateUserInfo = async () =>{
-    let result = await userInfoUpdateService(userInfo.value)
-    ElMessage.success(result.msg? result.msg : '修改成功')
 
-    //pinia也要修改
-    userInfoStore.setInfo(userInfo.value)
-}
+const formRef = ref(null);
+
+const updateUserInfo = async () =>{
+    formRef.value.validate(async (valid) => {
+        if (valid) {
+            let result = await userInfoUpdateService(userInfo.value)
+            ElMessage.success(result.msg? result.msg : '修改成功')
+
+            //pinia也要修改
+            userInfoStore.setInfo(userInfo.value)
+        } else {
+            ElMessage.error('請填寫正確姓名或Email格式');
+        }
+    });
+};
 
 </script>
 <template>
@@ -47,16 +56,13 @@ const updateUserInfo = async () =>{
         </template>
         <el-row>
             <el-col :span="12">
-                <el-form :model="userInfo" :rules="rules" label-width="100px" size="large">
+                <el-form ref="formRef" :model="userInfo" :rules="rules" label-width="100px" size="large">
                     <el-form-item label="登入帳號" >
                         <el-input v-model="userInfo.account" disabled></el-input>
                     </el-form-item>
                     <el-form-item label="姓名" prop="name">
                         <el-input v-model="userInfo.name"></el-input>
                     </el-form-item>
-                    <!-- <el-form-item label="使用者暱稱" prop="nickname">
-                        <el-input v-model="userInfo.nickname"></el-input>
-                    </el-form-item> -->
                     <el-form-item>
                         <el-button type="primary" @click="updateUserInfo">確認修改</el-button>
                     </el-form-item>

@@ -94,7 +94,6 @@ const tokenStore = useTokenStore();
 const uploadSuccess = (result)=>{
     const imageUrl = result.data;
     articleModel.value.coverImg = imageUrl;
-    console.log(result.data);
 }
 
 import { ElMessage } from 'element-plus';
@@ -102,6 +101,22 @@ import { ElMessage } from 'element-plus';
 const addArticle = async (clickState) =>{
     //先將狀態賦值給模型
     articleModel.value.state = clickState;
+    
+    if(articleModel.value.title === "")
+    {
+        ElMessage.error('請輸入文章標題');
+        return false;
+    }
+    if(articleModel.value.content === "")
+    {
+        ElMessage.error('請輸入文章內容');
+        return false;
+    }
+    if(articleModel.value.categoryId === "")
+    {
+        ElMessage.error('請選擇文章分類');
+        return false;
+    }
 
     let result = await articleAddService(articleModel.value);
 
@@ -183,7 +198,7 @@ const addArticle = async (clickState) =>{
                         </el-option>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="文章封面">
+                <!--<el-form-item label="文章封面">-->
                     <!-- 
                         auto-upload:設定是否自動上傳
                         action:設定service的路徑
@@ -191,8 +206,8 @@ const addArticle = async (clickState) =>{
                         headers:上傳的header
                         on-success:設定上傳成功後的回傳值
                     -->
-                    <el-upload class="avatar-uploader" :auto-upload="true" :show-file-list="false"
-                    action="/api/start/upload"
+                    <!--<el-upload class="avatar-uploader" :auto-upload="true" :show-file-list="false"
+                    action="/api/upload"
                     name="file"
                     :headers="{'Authorization':tokenStore.token}"
                     :on-success="uploadSuccess"
@@ -201,8 +216,8 @@ const addArticle = async (clickState) =>{
                         <el-icon v-else class="avatar-uploader-icon">
                             <Plus />
                         </el-icon>
-                    </el-upload>
-                </el-form-item>
+                    </el-upload>-->
+                <!-- </el-form-item> -->
                 <el-form-item label="文章內容">
                     <div class="editor">
                         <quill-editor

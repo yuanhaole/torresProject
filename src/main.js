@@ -1,16 +1,19 @@
-import './assets/styles/index.scss'; //SCSSㄠ
+import './assets/styles/index.scss'; //SCSS
 
 import { createApp } from 'vue'
+import App from './App.vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import router from '@/router'   //預設指向router資料夾下的index.js
-import App from './App.vue'
 import { createPinia } from 'pinia'
 import { createPersistedState } from 'pinia-persistedstate-plugin'
 import locale from 'element-plus/dist/locale/zh-tw.js'
 import vue3GoogleLogin from 'vue3-google-login'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+import store from './stores';
+
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -22,6 +25,7 @@ const app = createApp(App);
 const pinia = createPinia();
 const persist = createPersistedState();
 pinia.use(persist)
+app.use(store);
 app.use(router)
 app.use(pinia);
 app.use(ElementPlus,{locale});
