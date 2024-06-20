@@ -9,7 +9,7 @@
 <script>
 
 export default {
-  // TODO: 如果这个用户是自己，要在name后面加一个(我)
+  // TODO: 如果這個用戶是自己，要在name後面加一個(我)
   props: {
     personInfo: { 
       default: {
@@ -21,13 +21,13 @@ export default {
 
 <style lang="scss" scoped>
 .person-card {
-  width: 250px;
-  height: 80px;
+  width: 200px;
+  height: 45px;
   border-radius: 10px;
-  background-color: #a49d93;
+  background-color: #e3e3e3;
   position: relative;
-  margin: 25px 0;
-
+  margin: 15px 0;
+  margin-left: 15px;
   .info {
     position: absolute;
     left: 50%;
@@ -37,8 +37,8 @@ export default {
     overflow: hidden;
     display: flex;
       .name {
-        color: #fff;
-        font-size: 22px;
+        color: black;
+        font-size: 20px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -46,10 +46,9 @@ export default {
       }
   }
   &:hover {
-    background-color: rgb(95, 87, 76);
+    background-color: #e3e3e3(95, 87, 76);
     transition: 0.3s;
-    box-shadow: 0px 0px 10px 0px rgba(95, 87, 76);
-    // box-shadow:  0 5px 20px rgba(251, 152, 11, .5);
+    box-shadow: 0px 0px 5px 0px #e3e3e3(95, 87, 76);
   }
 }
 </style>

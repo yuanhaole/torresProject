@@ -1,41 +1,47 @@
 <template>
-  <div class="chatRoom">
-    <div class="personList">
-      <div class="title">
-        <h1>聊天室</h1>
-      </div>
-      <!-- 誰在線上?列表 -->
-      <div class="online-person">
-        <span class="title">誰在線上?</span>
-        <div class="person-cards-wrapper">
-          <div
-            class="personList"
-            v-for="personInfo in personList"
-            :key="personInfo.id"
-          >
-            <PersonCard :personInfo="personInfo"></PersonCard>
+  <el-card class="page-container">
+    <template #header>
+        <div class="header">
+            <span>聊天室</span>
+            <div class="extra">
+            </div>
+        </div>
+    </template>
+    <div class="chatRoom">
+      <div class="personList">
+        <!-- 上線名單列表 -->
+        <div class="online-person">
+          <span class="title"><font-awesome-icon :icon="['far', 'address-card']" />　線上名單</span>
+          <div class="person-cards-wrapper">
+            <div
+              class="personList"
+              v-for="personInfo in personList"
+              :key="personInfo.id"
+            >
+              <PersonCard :personInfo="personInfo"></PersonCard>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- 聊天窗口 -->
-    <div class="chatContent">
-      <ChatWindow></ChatWindow>
-    </div>
-    <!-- 輸入用戶的對話框 -->
-    <div v-if="showDialog" class="dialog-wrapper">
-      <div class="dialog">
-        <h2 class="dialog-title">請輸入名字</h2>
-        <el-input
-          v-model="inputName"
-          class="dialog-content"
-          placeholder="請輸入內容"
-          maxlength="10"
-        ></el-input>
-        <button @click="closeDialog" class="dialog-button">確定</button>
+      <!-- 聊天窗口 -->
+      <div class="chatContent">
+        <ChatWindow></ChatWindow>
+      </div>
+      <!-- 輸入用戶的對話框 -->
+      <div v-if="showDialog" class="dialog-wrapper">
+        <div class="dialog">
+          <h2 class="dialog-title">請輸入名字</h2>
+          <el-input
+            v-model="inputName"
+            class="dialog-content"
+            placeholder="請輸入內容"
+            maxlength="10"
+          ></el-input>
+          <button @click="closeDialog" class="dialog-button">確定</button>
+        </div>
       </div>
     </div>
-  </div>
+  </el-card>
 </template>
 
 <script>
@@ -123,22 +129,27 @@ export default {
 .chatRoom {
   display: flex;
   .personList {
+    position: relative;
     width: 280px;
+    // border-right: 1px solid #e4e7ed; /* 右邊添加一條2px寬的黑色線 */
+    // padding-right: 10px; /* 添加一些內邊距，以免內容太靠近線 */
+    background-color: #f4f4f4;
     .title {
       color: #000;
       padding-left: 10px;
     }
     .online-person {
-      margin-top: 50px;
+      margin-top: 25px;
       .title {
         font-size: 20px;
       }
       .person-cards-wrapper {
         height: 65vh;
-        margin-top: 20px;
+        margin-top: 25px;
         overflow: hidden;
         overflow-y: scroll;
         box-sizing: border-box;
+        border-top: 1px solid #e4e7ed;
         &::-webkit-scrollbar {
           width: 0; /* Safari,Chrome 隱藏滾動條 */
           height: 0; /* Safari,Chrome 隱藏滾動條 */

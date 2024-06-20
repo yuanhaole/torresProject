@@ -155,12 +155,10 @@ const headleCommand = (command)=>{
                     </template>
                 </el-dropdown>
             </el-header>
-            <!-- 中間間區域 -->
+            <!-- 中間區域 -->
 
             <el-main>
-                <!-- <div style="width: 1290px; height: 570px;border: 1px solid red;">
-                    內容展示區
-                </div> -->
+
                 <router-view></router-view>
 
             </el-main>

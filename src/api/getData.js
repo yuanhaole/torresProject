@@ -3,11 +3,11 @@ import axios from 'axios';
 
 
 export const newUser = (param) => {
-  // return axios({
-  //   method: 'post',
-  //   baseURL: `${baseUrl}/user/new/${param}`,
-  // }).then(res => res.data)
-  return request.post('/user/new', param )
+  return request.post('/user/new', JSON.stringify(param), {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
 }
 
 export const addUser = (param) =>{

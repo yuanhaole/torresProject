@@ -6,20 +6,24 @@
         <div class="chat-wrapper" v-for="item in chatList" :key="item.id">
           <!-- 透過UID得知訊息是自己的還是別人的 -->
           <div class="chat-friend" v-if="item.uid != $store.state.id">
+            <div class="info-name">
+              <span>{{ item.name }} 說：</span>
+            </div>
             <div class="chat-text">
               {{ item.msg }}
             </div>
             <div class="info-time">
-              <span>{{ item.name }}</span>
               <span>{{ item.time }}</span>
             </div>
           </div>
           <div class="chat-me" v-else>
+            <div class="info-name">
+              <span>{{ item.name }} 說：</span>
+            </div>
             <div class="chat-text">
               {{ item.msg }}
             </div>
             <div class="info-time">
-              <span>{{ item.name }}</span>
               <span>{{ item.time }}</span>
             </div>
           </div>
@@ -195,6 +199,11 @@ export default {
             color: black;
             font-size: 20px;
           }
+          .info-name{
+            margin: 10px 0;
+            color: black;
+            font-size: 18px;
+          }
           .info-time {
             margin: 10px 0;
             color: black;
@@ -222,10 +231,10 @@ export default {
       }
     }
     .chatInputs {
-      width: 90%;
-      position: absolute;
+      width: 50%;
+
       bottom: 0;
-      margin: 3%;
+      margin: 0 auto;
       display: flex;
       .box {
         width: 80px;
